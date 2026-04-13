@@ -12,7 +12,6 @@ let score = 0;
 let questions = [];
 
 let isMuted = false;
-
 /* JSON load */
 fetch("static/questions.json")
     .then(res => res.json())
