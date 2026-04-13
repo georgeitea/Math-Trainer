@@ -13,7 +13,7 @@ let questions = [];
 
 let isMuted = false;
 /* JSON load */
-fetch("static/questions.json")
+fetch("folder1/questions.json")
     .then(res => res.json())
     .then(data => {
         questions = data;
