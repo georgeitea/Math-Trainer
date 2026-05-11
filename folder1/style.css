@@ -1,138 +1,228 @@
+/* --- 1. ΓΕΝΙΚΟ STYLE ΣΕΛΙΔΑΣ --- */
 body {
     background-color: rgb(37, 37, 99);
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-
-    /* 🔥 ΚΕΝΤΡΑΡΕΙ ΟΛΗ ΤΗ ΣΕΛΙΔΑ */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* κρατάει πάνω τον τίτλο */
+    justify-content: flex-start;
     min-height: 100vh;
+    color: white;
+    overflow-x: hidden; /* Αποφυγή οριζόντιου scroll */
 }
 
-/* τίτλος */
+/* Τίτλος */
 h1 {
     text-align: center;
     color: aqua;
     padding: 20px;
-    width: 100%;
+    width: 90%;
+    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Δυναμικό μέγεθος γραμματοσειράς */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* container start button */
+/* --- 2. ΚΟΥΜΠΙ START GAME --- */
 .start_button_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* ❌ ΣΗΜΑΝΤΙΚΟ: ΣΒΗΣΕ height */
-    height: auto;
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
-/* button */
 .button_start_game {
     background-color: rgb(245, 5, 5);
     color: white;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 10px;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* hover */
 .button_start_game:hover {
     background-color: rgb(204, 23, 23);
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-/* click */
-.button_start_game:active {
-    background-color: green;
-}
-
-/* hide animation */
 .button_start_game.hide {
-    transform: translateY(-200px);
+    transform: translateY(-100px);
     opacity: 0;
-    transition: 0.5s;
+    pointer-events: none;
 }
 
-/* QUIZ BOX */
+/* --- 3. QUIZ BOX (ΤΟ ΚΥΡΙΩΣ ΠΛΑΙΣΙΟ) --- */
 #quizBox {
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
+    width: 95%;
+    max-width: 550px;
+    padding: clamp(20px, 5vw, 40px);
     background-color: lightblue;
-    border-radius: 10px;
+    border-radius: 20px;
     text-align: center;
     box-sizing: border-box;
+    color: #252563;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    
+    /* Responsive Ύψος */
+    height: auto;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    /* start hidden animation */
+    /* Animation εμφάνισης */
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(30px);
     transition: 0.5s ease;
 }
 
-/* show */
 #quizBox.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* hidden */
 .hidden {
     display: none;
 }
 
-/* answers */
+/* --- 4. ΕΡΩΤΗΣΕΙΣ ΚΑΙ ΑΠΑΝΤΗΣΕΙΣ --- */
+#question {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+    line-height: 1.5;
+    margin-bottom: 30px;
+    word-wrap: break-word;
+    font-weight: bold;
+}
+
 #answers button {
     display: block;
     width: 100%;
-    margin: 10px 0;
-    padding: 12px;
+    margin: 12px 0;
+    padding: 15px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     background-color: white;
-    transition: 0.3s;
+    color: #252563;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#answers button:hover {
-    transform: scale(1.02);
+#answers button:hover:not(:disabled) {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
 }
 
-/* score */
-.score {
-    color: rgb(24, 171, 2);
-    font-size: 2rem;
+/* Layout για Σωστό/Λάθος (True/False) */
+.tf-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
 }
 
+.tf-button {
+    flex: 1;
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+}
+
+#answers .tf-button:nth-child(1) { border-left: 8px solid #2ecc71; } /* Σωστό */
+#answers .tf-button:nth-child(2) { border-left: 8px solid #e74c3c; } /* Λάθος */
+
+/* --- 5. UI ΣΤΟΙΧΕΙΑ (MUTE, CREATOR, QR) --- */
 #muteBtn {
     position: fixed;
-    top: 0;
-    right: 0;
-    background: yellow;
-    z-index: 99999;
-}
-
-#muteBtn:hover {
-    transform: scale(1.05);
+    top: 15px;
+    right: 15px;
+    background: #ffd700;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
 }
 
 .creator {
     position: fixed;
-    bottom: 10px;
-    left: 10px;
-
+    bottom: 15px;
+    left: 15px;
     color: white;
-    font-size: 0.9rem;
-    opacity: 0.7;
-
-    background: rgba(0,0,0,0.3);
-    padding: 6px 10px;
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 12px;
     border-radius: 8px;
+    z-index: 1000;
+}
+
+#qr-open-btn {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #00d2ff;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+/* --- 6. MODAL QR CODE --- */
+#qr-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-hidden { visibility: hidden; opacity: 0; }
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    color: #333;
+    position: relative;
+    max-width: 280px;
+}
+
+#qr-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* --- 7. MOBILE RESPONSIVENESS (ΚΙΝΗΤΑ) --- */
+@media (max-width: 480px) {
+    #quizBox {
+        width: 92%;
+        padding: 20px 15px;
+    }
+
+    #question {
+        font-size: 1.1rem;
+    }
+
+    .tf-container {
+        flex-direction: column; /* Τα Σωστό/Λάθος μπαίνουν το ένα κάτω από το άλλο */
+    }
+
+    .creator {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
 }
