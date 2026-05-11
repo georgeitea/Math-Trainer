@@ -12,7 +12,7 @@ let questions = [];
 let isMuted = false;
 
 // Φόρτωση και ανακάτεμα ερωτήσεων
-fetch("static/questions.json")
+fetch("folder1/questions.json")
     .then(res => res.json())
     .then(data => {
         questions = data.sort(() => Math.random() - 0.5);
