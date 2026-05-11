@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Μαθηματικά της πρώτης λυκείου</title>
-    <link rel="stylesheet" href="folder1/style.css">
+    <title>Μαθηματικά Α' Λυκείου - Quiz</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <h1>Ασκήσεις πρώτης λυκείου<br>στα μαθηματικά</h1>
+    <h1>Ασκήσεις Α' Λυκείου<br>στα Μαθηματικά</h1>
+    
     <div id="overlay"></div>
+    
     <div class="start_button_container">
-        <button class="button_start_game">Start game</button>
+        <button class="button_start_game">Start Game</button>
     </div>
+
     <div id="quizBox" class="hidden">
         <h2 id="question"></h2>
-    <div id="answers"></div>
-    
-    <button id="muteBtn">🔊 Mute</button>
-</div>
-<audio id="bgMusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
-<div class="creator">
-    Δημιουργός: George Daradimos
-</div>
+        <div id="answers"></div>
+        <button id="muteBtn">🔊 Mute</button>
+    </div>
+
+    <div class="creator">
+        Δημιουργός: George Daradimos
+    </div>
+
+    <button id="qr-open-btn" title="Μοιραστείτε το Quiz">📱</button>
+
+    <div id="qr-modal" class="modal-hidden">
+        <div class="modal-content">
+            <span id="qr-close-btn">&times;</span>
+            <h3>Μοιράσου το Quiz!</h3>
+            <canvas id="qrcode"></canvas>
+            <p>Σάρωσε για να παίξεις στο κινητό σου</p>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="static/main.js"></script>
 </body>
-<script src="folder1/main.js"></script>
 </html>
